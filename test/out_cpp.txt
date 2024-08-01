@@ -1,0 +1,112 @@
+Created slav 0x7f78c7f06cd0
+Created vertex Vertex (convex) (100; 50)
+Created vertex Vertex (reflex) (150; 150)
+Created vertex Vertex (convex) (50; 100)
+Created vertex Vertex (convex) (50; 250)
+Created vertex Vertex (reflex) (150; 250)
+Created vertex Vertex (convex) (50; 350)
+Created vertex Vertex (convex) (350; 350)
+Created vertex Vertex (convex) (350; 100)
+Created vertex Vertex (reflex) (250; 150)
+Created vertex Vertex (convex) (300; 50)
+Generated new event for Vertex (convex) (100; 50) 61.8034 Edge event @ (200, 111.803) between Vertex (300; 50) and Vertex (100; 50)
+looking for split candidates for vertex Vertex (reflex) (150; 150)
+	 considering EDGE ((300, 50), (100, 50))
+	 NOT CONSIDERED EDGE ((100, 50), (150, 150))
+	 NOT CONSIDERED EDGE ((150, 150), (50, 100))
+	 considering EDGE ((50, 100), (50, 250))
+	 considering EDGE ((50, 250), (150, 250))
+	 considering EDGE ((150, 250), (50, 350))
+	 considering EDGE ((50, 350), (350, 350))
+	 considering EDGE ((350, 350), (350, 100))
+	 considering EDGE ((350, 100), (250, 150))
+	 considering EDGE ((250, 150), (300, 50))
+Generated new event for Vertex (convex) (50; 100) 57.2949 Edge event @ (107.295, 192.705) between Vertex (50; 100) and Vertex (50; 250)
+Generated new event for Vertex (convex) (50; 250) 57.2949 Edge event @ (107.295, 192.705) between Vertex (50; 100) and Vertex (50; 250)
+looking for split candidates for vertex Vertex (reflex) (150; 250)
+	 considering EDGE ((300, 50), (100, 50))
+	 considering EDGE ((100, 50), (150, 150))
+	 considering EDGE ((150, 150), (50, 100))
+	 considering EDGE ((50, 100), (50, 250))
+	 NOT CONSIDERED EDGE ((50, 250), (150, 250))
+	 NOT CONSIDERED EDGE ((150, 250), (50, 350))
+	 considering EDGE ((50, 350), (350, 350))
+		Discarded candidate (3.4946e+16, -1.44751e+16) 1 0 1
+	 considering EDGE ((350, 350), (350, 100))
+		Discarded candidate (291.421, 191.421) 1 0 1
+	 considering EDGE ((350, 100), (250, 150))
+	 considering EDGE ((250, 150), (300, 50))
+Generated new event for Vertex (reflex) (150; 250) 1.44751e+16 Edge event @ (3.4946e+16, -1.44751e+16) between Vertex (150; 250) and Vertex (50; 350)
+Generated new event for Vertex (convex) (50; 350) 87.868 Edge event @ (262.132, 262.132) between Vertex (50; 350) and Vertex (350; 350)
+Generated new event for Vertex (convex) (350; 350) 87.868 Edge event @ (262.132, 262.132) between Vertex (50; 350) and Vertex (350; 350)
+Generated new event for Vertex (convex) (350; 100) 95.4915 Edge event @ (254.508, 254.508) between Vertex (350; 350) and Vertex (350; 100)
+looking for split candidates for vertex Vertex (reflex) (250; 150)
+	 considering EDGE ((300, 50), (100, 50))
+	 considering EDGE ((100, 50), (150, 150))
+	 considering EDGE ((150, 150), (50, 100))
+	 considering EDGE ((50, 100), (50, 250))
+	 considering EDGE ((50, 250), (150, 250))
+	 considering EDGE ((150, 250), (50, 350))
+	 considering EDGE ((50, 350), (350, 350))
+	 considering EDGE ((350, 350), (350, 100))
+	 NOT CONSIDERED EDGE ((350, 100), (250, 150))
+	 NOT CONSIDERED EDGE ((250, 150), (300, 50))
+Generated new event for Vertex (convex) (300; 50) 61.8034 Edge event @ (200, 111.803) between Vertex (300; 50) and Vertex (100; 50)
+Dupa8
+57.2949 Edge event at intersection (107.295, 192.705) from Vertex (50; 100) Vertex (50; 250)  in LAV 0x7f78c7f06cd0
+Created vertex Vertex (convex) (107.295; 192.705)
+Invalidating vertex Vertex (convex) (50; 100)
+Invalidating vertex Vertex (convex) (50; 250)
+Generated new event for Vertex (convex) (107.295; 192.705) 30.9017 Edge event @ (219.098, 219.098) between Vertex (150; 150) and Vertex (107.295; 192.705)
+30.9017 Edge event at intersection (219.098, 219.098) from Vertex (150; 150) Vertex (107.295; 192.705)  in LAV 0x7f78c7f06cd0
+Created vertex Vertex (convex) (219.098; 219.098)
+Invalidating vertex Vertex (reflex) (150; 150)
+Invalidating vertex Vertex (convex) (107.295; 192.705)
+Generated new event for Vertex (convex) (219.098; 219.098) 100 Edge event @ (261.803, 150) between Vertex (100; 50) and Vertex (219.098; 219.098)
+57.2949 Discarded outdated edge event 57.2949 Edge event @ (107.295, 192.705) between Vertex (50; 100) and Vertex (50; 250)
+61.8034 Edge event at intersection (200, 111.803) from Vertex (300; 50) Vertex (100; 50)  in LAV 0x7f78c7f06cd0
+Created vertex Vertex (convex) (200; 111.803)
+Invalidating vertex Vertex (convex) (300; 50)
+Invalidating vertex Vertex (convex) (100; 50)
+Generated new event for Vertex (convex) (200; 111.803) 22.3607 Edge event @ (200, 200) between Vertex (250; 150) and Vertex (200; 111.803)
+22.3607 Edge event at intersection (200, 200) from Vertex (250; 150) Vertex (200; 111.803)  in LAV 0x7f78c7f06cd0
+Created vertex Vertex (convex) (200; 200)
+Invalidating vertex Vertex (reflex) (250; 150)
+Invalidating vertex Vertex (convex) (200; 111.803)
+Generated new event for Vertex (convex) (200; 200) 41.459 Edge event @ (225.623, 208.541) between Vertex (200; 200) and Vertex (219.098; 219.098)
+41.459 Edge event at intersection (225.623, 208.541) from Vertex (200; 200) Vertex (219.098; 219.098)  in LAV 0x7f78c7f06cd0
+Created vertex Vertex (convex) (225.623; 208.541)
+Invalidating vertex Vertex (convex) (200; 200)
+Invalidating vertex Vertex (convex) (219.098; 219.098)
+Generated new event for Vertex (convex) (225.623; 208.541) 54.8891 Edge event @ (282.514, 195.111) between Vertex (225.623; 208.541) and Vertex (150; 250)
+54.8891 Edge event at intersection (282.514, 195.111) from Vertex (225.623; 208.541) Vertex (150; 250)  in LAV 0x7f78c7f06cd0
+Created vertex Vertex (convex) (282.514; 195.111)
+Invalidating vertex Vertex (convex) (225.623; 208.541)
+Invalidating vertex Vertex (reflex) (150; 250)
+Generated new event for Vertex (convex) (282.514; 195.111) 62.7999 Edge event @ (287.2, 201.612) between Vertex (350; 100) and Vertex (282.514; 195.111)
+61.8034 Discarded outdated edge event 61.8034 Edge event @ (200, 111.803) between Vertex (300; 50) and Vertex (100; 50)
+62.7999 Edge event at intersection (287.2, 201.612) from Vertex (350; 100) Vertex (282.514; 195.111)  in LAV 0x7f78c7f06cd0
+Created vertex Vertex (convex) (287.2; 201.612)
+Invalidating vertex Vertex (convex) (350; 100)
+Invalidating vertex Vertex (convex) (282.514; 195.111)
+Generated new event for Vertex (convex) (287.2; 201.612) 87.868 Edge event @ (262.132, 262.132) between Vertex (287.2; 201.612) and Vertex (50; 350)
+87.868 Peak event at intersection (262.132, 262.132) from Vertex (287.2; 201.612) Vertex (50; 350) Vertex (350; 350) in LAV 0x7f78c7f06cd0
+Invalidating vertex Vertex (convex) (287.2; 201.612)
+Invalidating vertex Vertex (convex) (50; 350)
+Invalidating vertex Vertex (convex) (350; 350)
+0x7f78c7f080d8
+0x7f78c7f08398
+0x7f78c7f07158
+0x7f78c7f07648
+0x7f78c7f06d78
+0x7f78c7f088d8
+0x7f78c7f08268
+0x7f78c7f08878
+Subtree from (107.295, 192.705) with height 57.2949 and sinks [ (50, 100) (50, 250) ]
+Subtree from (219.098, 219.098) with height 30.9017 and sinks [ (150, 150) (107.295, 192.705) ]
+Subtree from (200, 111.803) with height 61.8034 and sinks [ (300, 50) (100, 50) ]
+Subtree from (200, 200) with height 22.3607 and sinks [ (250, 150) (200, 111.803) ]
+Subtree from (225.623, 208.541) with height 41.459 and sinks [ (200, 200) (219.098, 219.098) ]
+Subtree from (282.514, 195.111) with height 54.8891 and sinks [ (225.623, 208.541) (150, 250) ]
+Subtree from (287.2, 201.612) with height 62.7999 and sinks [ (350, 100) (282.514, 195.111) ]
+Subtree from (262.132, 262.132) with height 87.868 and sinks [ (287.2, 201.612) (50, 350) (350, 350) ]
