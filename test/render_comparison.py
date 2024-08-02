@@ -57,7 +57,7 @@ if __name__ == "__main__":
                 draw.line((point[0], point[1], next[0], next[1]), fill=0)
 
         skeleton = read_subtrees(file, lang)
-
+        
         print(f"{lang} output:")
         for res in skeleton:
             print(res)
