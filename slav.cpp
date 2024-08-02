@@ -143,7 +143,7 @@ pair<shared_ptr<Subtree>, vector<shared_ptr<Event>>> SLAV::handle_split_event(Sp
             vertices.push_back(l->head);
             lavs.push_back(std::move(l));
         } else {
-            cout << "LAV " << l << " has collapsed into the line " << l->head->point << "--" << l->head->next->point << endl;
+            cout << "LAV " << l->toString() << " has collapsed into the line " << l->head->point << "--" << l->head->next->point << endl;
             sinks.push_back(l->head->next->point);
             for (auto vert : l->toPolygon()) {
                 vert->invalidate();
