@@ -57,11 +57,12 @@ if __name__ == "__main__":
                 draw.line((point[0], point[1], next[0], next[1]), fill=0)
 
         skeleton = read_subtrees(file, lang)
-
+        
+        print(f"{lang} output:")
         for res in skeleton:
             print(res)
-
+        draw.text((0, 0), str(lang), fill="black")
         for arc in skeleton:
             for sink in arc['sinks']:
                 draw.line((arc['source'][0], arc['source'][1], sink[0], sink[1]), fill="red")
-        im.show()
+        im.show(title=str(lang))

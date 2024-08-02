@@ -1,4 +1,5 @@
 import re, subprocess
+from enum import Enum
 
 # Paths to the Python script and the executable
 python_script_path = 'reference/demo.py'  # Replace with the actual path
@@ -29,7 +30,7 @@ def parse_python_line(line):
     return None
 
 
-class LANGUAGE:
+class LANGUAGE(Enum):
     CPP = 0
     PYTHON = 1
 
