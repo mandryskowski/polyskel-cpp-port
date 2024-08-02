@@ -11,6 +11,7 @@
 #include <optional>
 #include <memory>
 #include <cassert>
+#include <unordered_map>
 
 #include "vec.h"
 #include "util.h"

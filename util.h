@@ -8,6 +8,7 @@
 #include <numeric>
 #include <string>
 #include <sstream>
+#include <memory>
 
 #define EPSILON 0.00001
 
