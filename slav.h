@@ -3,12 +3,14 @@
 
 #include <memory>
 #include <vector>
+#include <utility>
 
 #include "vec.h"
+#include "event.h"
 
+struct OriginalEdge;
+struct Subtree;
 class LAV;
-class OriginalEdge;
-class Subtree;
 class Event;
 class EdgeEvent;
 class SplitEvent;

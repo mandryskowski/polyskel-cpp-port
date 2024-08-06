@@ -12,8 +12,30 @@
 
 #define EPSILON 0.00001
 
-class Vec2;
-class Edge;
+#if defined(_WIN32)
+#  define POLYSKEL_COMPILER_DLLEXPORT __declspec(dllexport)
+#  define POLYSKEL_COMPILER_DLLIMPORT __declspec(dllimport)
+#elif defined(__GNUC__)
+#  define POLYSKEL_COMPILER_DLLEXPORT __attribute__ ((visibility ("default")))
+#  define POLYSKEL_COMPILER_DLLIMPORT __attribute__ ((visibility ("default")))
+#else
+#  define POLYSKEL_COMPILER_DLLEXPORT
+#  define POLYSKEL_COMPILER_DLLIMPORT
+#endif
+
+#ifndef POLYSKEL_DLL_SYMBOL
+#  if defined(POLYSKEL_STATIC_EXPORTS)
+#    define POLYSKEL_DLL_SYMBOL
+#  elif defined(POLYSKEL_SHARED_EXPORTS)
+#    define POLYSKEL_DLL_SYMBOL POLYSKEL_COMPILER_DLLEXPORT
+#  else
+#    define POLYSKEL_DLL_SYMBOL POLYSKEL_COMPILER_DLLIMPORT
+#  endif
+#endif
+
+
+struct Vec2;
+struct Edge;
 
 using namespace std;
 
@@ -52,6 +74,6 @@ unique_ptr<Vec2> intersect(const Edge& l1, const Edge& l2, char type1 = 'l', cha
 
 Edge get_creator_vectors(const Edge& e_left, const Edge& e_right);
 
-bool approximately_equals(double lhs, double rhs);
+POLYSKEL_DLL_SYMBOL bool approximately_equals(double lhs, double rhs);
 
 #endif // UTIL_H

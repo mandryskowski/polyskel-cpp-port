@@ -17,7 +17,7 @@ struct OriginalEdge {
         : edge(edge), bisector_left(bisector_left), bisector_right(bisector_right) {}
 };
 
-struct Subtree {
+struct POLYSKEL_DLL_SYMBOL Subtree {
     Vec2 source;
     double height;
     vector<Vec2> sinks;
