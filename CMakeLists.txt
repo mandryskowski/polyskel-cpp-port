@@ -10,9 +10,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(LIBRARY_SOURCES
     lav.cpp
     lavertex.cpp
-    polyskel.cpp
     slav.cpp
     util.cpp
+    polyskel.cpp
 )
 
 # Add header files (not necessary for the build, but useful for IDEs)
@@ -29,12 +29,18 @@ set(LIBRARY_HEADERS
 file(COPY ${CMAKE_SOURCE_DIR}/test DESTINATION ${CMAKE_BINARY_DIR})
 file(COPY ${CMAKE_SOURCE_DIR}/examples DESTINATION ${CMAKE_BINARY_DIR})
 
+# Add the executable
+add_executable(demo demo.cpp)
 
 # Create the shared library
 add_library(polyskel SHARED ${LIBRARY_SOURCES})
 
-# Add the executable
-add_executable(demo demo.cpp)
+get_target_property(polyskel_target_type polyskel TYPE)
+if(polyskel_target_type STREQUAL STATIC_LIBRARY)
+  target_compile_definitions(polyskel PUBLIC POLYSKEL_STATIC_EXPORTS)
+else()
+  target_compile_definitions(polyskel PRIVATE POLYSKEL_SHARED_EXPORTS)
+endif()
 
 # Link the shared library to the executable
 target_link_libraries(demo polyskel)
