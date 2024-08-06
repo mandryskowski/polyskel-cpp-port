@@ -18,6 +18,7 @@
 #include "event.h"
 #include "slav.h"
 #include "lav.h"
+#include "polyskel.h"
 
 
 using namespace std;
@@ -26,7 +27,7 @@ void _merge_sources(vector<shared_ptr<Subtree>>& skeleton) {
     unordered_map<Vec2, unsigned int, vec2hash> sources;
     vector<unsigned int> to_remove;
 
-    for (size_t i = 0; i < skeleton.size(); i++) {
+    for (unsigned int i = 0; i < skeleton.size(); i++) {
         Subtree& p = *skeleton[i]; 
         Vec2 source = p.source;
         if (sources.find(source) != sources.end()) {
@@ -43,7 +44,7 @@ void _merge_sources(vector<shared_ptr<Subtree>>& skeleton) {
         }
     }
 
-    for (int i = to_remove.size() - 1; i >= 0; i--) {
+    for (int i = static_cast<int>(to_remove.size()) - 1; i >= 0; i--) {
         skeleton.erase(skeleton.begin() + to_remove[i]);
     }
 }
@@ -95,6 +96,6 @@ vector<shared_ptr<Subtree>> skeletonize(vector<Vec2>& polygon, vector<vector<Vec
     }
 
     _merge_sources(output);
+    
     return output;
-
 }

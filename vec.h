@@ -9,7 +9,7 @@
 
 using namespace std;
 
-struct Vec2 {
+struct POLYSKEL_DLL_SYMBOL Vec2 {
     double x;
     double y;
 
