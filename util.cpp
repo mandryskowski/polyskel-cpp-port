@@ -1,7 +1,9 @@
 #include "util.h"
 #include "vec.h"
 
-std::vector<Vec2> normalize_contour(const std::vector<Vec2>& contour) {
+using namespace polyskel;
+
+std::vector<Vec2> polyskel::normalize_contour(const std::vector<Vec2>& contour) {
     std::vector<Vec2> points;
     for (const auto& vec : contour) {
         points.emplace_back(vec);
@@ -19,7 +21,7 @@ std::vector<Vec2> normalize_contour(const std::vector<Vec2>& contour) {
     return result;
 }
 
-unique_ptr<Vec2> intersect(const Edge& l1, const Edge& l2, char type1, char type2) {
+std::unique_ptr<Vec2> polyskel::intersect(const Edge& l1, const Edge& l2, char type1, char type2) {
     Vec2 p1 = l1.start, q1 = l2.start;
     Vec2 r = l1.toVector(), s = l2.toVector();
     double r_cross_s = r.cross(s);
@@ -48,15 +50,15 @@ unique_ptr<Vec2> intersect(const Edge& l1, const Edge& l2, char type1, char type
             return nullptr;
     }
 
-    return make_unique<Vec2>(x, y);
+    return std::make_unique<Vec2>(x, y);
 
 
 }
 
-Edge get_creator_vectors(const Edge& e_left, const Edge& e_right) {
+Edge polyskel::get_creator_vectors(const Edge& e_left, const Edge& e_right) {
     return Edge(e_left.toVector().normalized() * -1, e_right.toVector().normalized());
 }
 
-bool approximately_equals(double lhs, double rhs) {
-    return lhs == rhs || (abs(lhs - rhs) <= max(abs(lhs), abs(rhs)) * 0.001);
+bool polyskel::approximately_equals(double lhs, double rhs) {
+    return lhs == rhs || (std::abs(lhs - rhs) <= std::max(std::abs(lhs), std::abs(rhs)) * 0.001);
 }

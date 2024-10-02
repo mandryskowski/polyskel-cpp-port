@@ -1,5 +1,5 @@
-#ifndef VEC_H
-#define VEC_H
+#ifndef POLYSKEL_CPP_PORT_VEC_H
+#define POLYSKEL_CPP_PORT_VEC_H
 #include <cmath>
 #include <iostream>
 #include <ostream>
@@ -85,4 +85,4 @@ namespace polyskel {
     }
     };
 }
-#endif //VEC_H
+#endif // POLYSKEL_CPP_PORT_VEC_H

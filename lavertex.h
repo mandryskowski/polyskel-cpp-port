@@ -1,5 +1,5 @@
-#ifndef LAVERTEX_H
-#define LAVERTEX_H
+#ifndef POLYSKEL_CPP_PORT_LAVERTEX_H
+#define POLYSKEL_CPP_PORT_LAVERTEX_H
 #include <vector>
 #include <memory>
 #include <iostream>
@@ -60,8 +60,6 @@ namespace polyskel {
 
             is_reflex = direction_vectors.start.cross(direction_vectors.end) < 0;
             bisector = Edge(point, point + (creator_vectors.start + creator_vectors.end) * (is_reflex ? -1 : 1));
-
-            std::cout << "Created vertex " + toRepr() << std::endl;
         }
         LAVertex(const Vec2& pt, const Edge& e_left, const Edge& e_right):
             LAVertex(pt, e_left, e_right, get_creator_vectors(e_left, e_right)) {}
@@ -75,4 +73,4 @@ namespace polyskel {
         std::string toRepr() const;
     };
 }
-#endif //LAVERTEX_H
+#endif // POLYSKEL_CPP_PORT_LAVERTEX_H

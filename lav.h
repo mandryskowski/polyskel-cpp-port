@@ -1,5 +1,5 @@
-#ifndef LAV_H
-#define LAV_H
+#ifndef POLYSKEL_CPP_PORT_LAV_H
+#define POLYSKEL_CPP_PORT_LAV_H
 #include <memory>
 #include <string>
 #include <vector>
@@ -18,7 +18,6 @@ namespace polyskel {
         SLAV* slav;
         unsigned int len;
         LAV(SLAV& slav) : head(nullptr), slav(&slav), len(0) {
-            std::cout << "Created slav " << this << std::endl;
         }
         std::unique_ptr<LAV> clone() const;
         static std::unique_ptr<LAV> from_polygon(const std::vector<Vec2>& polygon, SLAV& slav);
@@ -35,4 +34,4 @@ namespace polyskel {
         std::vector<std::shared_ptr<LAVertex>> toPolygon() const;
     };
 }
-#endif // LAV_H
+#endif // POLYSKEL_CPP_PORT_LAV_H

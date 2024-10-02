@@ -1,5 +1,5 @@
-#ifndef POLYSKEL_H
-#define POLYSKEL_H
+#ifndef POLYSKEL_CPP_PORT_POLYSKEL_H
+#define POLYSKEL_CPP_PORT_POLYSKEL_H
 
 #include <vector>
 #include "util.h"
@@ -11,4 +11,6 @@ namespace polyskel {
 
     POLYSKEL_DLL_SYMBOL std::vector<std::shared_ptr<Subtree>> skeletonize(std::vector<Vec2>& polygon, std::vector<std::vector<Vec2>>& holes);
 }
-#endif //POLYSKEL_H
+
+
+#endif // POLYSKEL_CPP_PORT_POLYSKEL_H

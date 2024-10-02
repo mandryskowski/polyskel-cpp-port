@@ -1,5 +1,5 @@
-#ifndef UTIL_H
-#define UTIL_H
+#ifndef POLYSKEL_CPP_PORT_UTIL_H
+#define POLYSKEL_CPP_PORT_UTIL_H
 #include <vector>
 #include <tuple>
 #include <cmath>
@@ -76,4 +76,4 @@ namespace polyskel {
 
     POLYSKEL_DLL_SYMBOL bool approximately_equals(double lhs, double rhs);
 }
-#endif // UTIL_H
+#endif // POLYSKEL_CPP_PORT_UTIL_H

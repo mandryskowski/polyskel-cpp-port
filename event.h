@@ -1,5 +1,5 @@
-#ifndef EVENT_H
-#define EVENT_H
+#ifndef POLYSKEL_CPP_PORT_EVENT_H
+#define POLYSKEL_CPP_PORT_EVENT_H
 #include <memory>
 #include <string>
 #include <sstream>
@@ -26,10 +26,10 @@ namespace polyskel {
 
     class SplitEvent : public Event {
     public:
-        shared_ptr<LAVertex> vertex;
+        std::shared_ptr<LAVertex> vertex;
         Edge opposite_edge;
 
-        SplitEvent(double dist, Vec2 inter_point, shared_ptr<LAVertex> vert, Edge opp_edge)
+        SplitEvent(double dist, Vec2 inter_point, std::shared_ptr<LAVertex> vert, Edge opp_edge)
             : Event(dist, inter_point), vertex(vert), opposite_edge(opp_edge) {}
 
 
@@ -42,10 +42,10 @@ namespace polyskel {
 
     class EdgeEvent : public Event {
     public:
-        shared_ptr<LAVertex> vertex_a;
-        shared_ptr<LAVertex> vertex_b;
+        std::shared_ptr<LAVertex> vertex_a;
+        std::shared_ptr<LAVertex> vertex_b;
 
-        EdgeEvent(double dist, Vec2 inter_point, shared_ptr<LAVertex> vert_a, shared_ptr<LAVertex> vert_b)
+        EdgeEvent(double dist, Vec2 inter_point, std::shared_ptr<LAVertex> vert_a, std::shared_ptr<LAVertex> vert_b)
             : Event(dist, inter_point), vertex_a(vert_a), vertex_b(vert_b) {}
 
         virtual std::string toString() const override {
@@ -120,4 +120,4 @@ namespace polyskel {
         }
     };
 } // namespace polyskel
-#endif //EVENT_H
+#endif // POLYSKEL_CPP_PORT_EVENT_H

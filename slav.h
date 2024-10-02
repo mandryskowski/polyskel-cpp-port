@@ -1,5 +1,5 @@
-#ifndef SLAV_H
-#define SLAV_H
+#ifndef POLYSKEL_CPP_PORT_SLAV_H
+#define POLYSKEL_CPP_PORT_SLAV_H
 
 #include <memory>
 #include <vector>
@@ -33,4 +33,4 @@ namespace polyskel {
     };;
 }
 
-#endif //SLAV_H
+#endif // POLYSKEL_CPP_PORT_SLAV_H
