@@ -11,6 +11,9 @@
 #include "polyskel.h" // Assuming this contains the necessary functions for skeletonization
 #include "lavertex.h"
 
+using namespace std;
+using namespace polyskel;
+
 
 int main(int argc, char** argv) {
     // Setup logging and argument parsing

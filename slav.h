@@ -1,5 +1,5 @@
-#ifndef SLAV_H
-#define SLAV_H
+#ifndef POLYSKEL_CPP_PORT_SLAV_H
+#define POLYSKEL_CPP_PORT_SLAV_H
 
 #include <memory>
 #include <vector>
@@ -8,27 +8,29 @@
 #include "vec.h"
 #include "event.h"
 
-struct OriginalEdge;
-struct Subtree;
-class LAV;
-class Event;
-class EdgeEvent;
-class SplitEvent;
+namespace polyskel {
 
-class SLAV {
-public:
-    vector<unique_ptr<LAV>> lavs;
-    vector<shared_ptr<OriginalEdge>> original_edges;
+    struct OriginalEdge;
+    struct Subtree;
+    class LAV;
+    class Event;
+    class EdgeEvent;
+    class SplitEvent;
 
-    SLAV(const vector<vector<Vec2>>& polygons);
+    class SLAV {
+    public:
+        std::vector<std::unique_ptr<LAV>> lavs;
+        std::vector<std::shared_ptr<OriginalEdge>> original_edges;
 
-    vector<LAV*> toLavs();
-    unsigned int length();
-    bool empty();
+        SLAV(const std::vector<std::vector<Vec2>>& polygons);
 
-    pair<shared_ptr<Subtree>, vector<shared_ptr<Event>>> handle_edge_event(EdgeEvent& event);
-    pair<shared_ptr<Subtree>, vector<shared_ptr<Event>>> handle_split_event(SplitEvent& event);
-};
+        std::vector<LAV*> toLavs();
+        unsigned int length();
+        bool empty();
 
+        std::pair<std::shared_ptr<Subtree>, std::vector<std::shared_ptr<Event>>> handle_edge_event(EdgeEvent& event);
+        std::pair<std::shared_ptr<Subtree>, std::vector<std::shared_ptr<Event>>> handle_split_event(SplitEvent& event);
+    };;
+}
 
-#endif //SLAV_H
+#endif // POLYSKEL_CPP_PORT_SLAV_H

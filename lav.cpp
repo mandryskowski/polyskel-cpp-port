@@ -3,15 +3,17 @@
 #include "lavertex.h"
 #include <cassert>
 
-unique_ptr<LAV> LAV::from_polygon(const std::vector<Vec2>& polygon, SLAV& slav) {
-    auto lav = make_unique<LAV>(slav);
+using namespace polyskel;
+
+std::unique_ptr<LAV> polyskel::LAV::from_polygon(const std::vector<Vec2>& polygon, SLAV& slav) {
+    auto lav = std::make_unique<LAV>(slav);
 
     auto windowed = window<Vec2>(polygon);
     std::vector<Vec2> result;
 
     for (const auto& [prev, point, next] : windowed) {
         lav->len += 1;
-        auto vert = make_shared<LAVertex>(point, Edge(prev, point), Edge(point, next));
+        auto vert = std::make_shared<LAVertex>(point, Edge(prev, point), Edge(point, next));
         vert->lav = lav.get();
         if (!lav->head) {
             lav->head = vert;
@@ -27,8 +29,8 @@ unique_ptr<LAV> LAV::from_polygon(const std::vector<Vec2>& polygon, SLAV& slav) 
 
     return lav;
 }
-unique_ptr<LAV> LAV::from_chain(shared_ptr<LAVertex> chain_head, SLAV& slav) {
-    auto lav = make_unique<LAV>(slav);
+std::unique_ptr<LAV> polyskel::LAV::from_chain(std::shared_ptr<LAVertex> chain_head, SLAV& slav) {
+    auto lav = std::make_unique<LAV>(slav);
 
     lav->head = chain_head;
 
@@ -40,10 +42,8 @@ unique_ptr<LAV> LAV::from_chain(shared_ptr<LAVertex> chain_head, SLAV& slav) {
     return lav;
 }
 
-void LAV::invalidate(LAVertex& vertex) {
+void polyskel::LAV::invalidate(LAVertex& vertex) {
     assert(vertex.lav == this); // Cannot invalidate a vertex that isn't mine.
-
-    cout << "Invalidating vertex " << vertex.toRepr() << endl;
 
     vertex.valid = false;
 
@@ -54,8 +54,8 @@ void LAV::invalidate(LAVertex& vertex) {
     vertex.lav = nullptr;
 }
 
-shared_ptr<LAVertex> LAV::unify(shared_ptr<LAVertex> vertex_a, shared_ptr<LAVertex> vertex_b, const Vec2& point) {
-    shared_ptr<LAVertex> replacement = make_shared<LAVertex>(point, vertex_a->edge_left, vertex_b->edge_right, Edge(vertex_b->bisector.toVector().normalized(), vertex_a->bisector.toVector().normalized()));
+std::shared_ptr<LAVertex> polyskel::LAV::unify(std::shared_ptr<LAVertex> vertex_a, std::shared_ptr<LAVertex> vertex_b, const Vec2& point) {
+    std::shared_ptr<LAVertex> replacement = std::make_shared<LAVertex>(point, vertex_a->edge_left, vertex_b->edge_right, Edge(vertex_b->bisector.toVector().normalized(), vertex_a->bisector.toVector().normalized()));
     replacement->lav = this;
 
     if (head == vertex_a || head == vertex_b) {
@@ -74,13 +74,13 @@ shared_ptr<LAVertex> LAV::unify(shared_ptr<LAVertex> vertex_a, shared_ptr<LAVert
     return replacement;
 }
 
-std::string LAV::toString() const {
+std::string polyskel::LAV::toString() const {
     std::ostringstream os;
     os << "LAV " << this;
     return os.str();
 }
 
-std::string LAV::toRepr() const {
+std::string polyskel::LAV::toRepr() const {
     std::ostringstream os;
     os << toString() << " = [";
     for (auto vert : toPolygon()) {
@@ -92,13 +92,13 @@ std::string LAV::toRepr() const {
 
 
 
-vector<shared_ptr<LAVertex>> LAV::toPolygon() const {
+std::vector<std::shared_ptr<LAVertex>> polyskel::LAV::toPolygon() const {
     if (!head) {
         return {};
     }
 
-    vector<shared_ptr<LAVertex>> result;
-    shared_ptr<LAVertex> current = head;
+    std::vector<std::shared_ptr<LAVertex>> result;
+    std::shared_ptr<LAVertex> current = head;
     do {
         result.push_back(current);
         current = current->next;

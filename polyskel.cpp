@@ -21,11 +21,11 @@
 #include "polyskel.h"
 
 
-using namespace std;
+using namespace polyskel;
 
-void _merge_sources(vector<shared_ptr<Subtree>>& skeleton) {
-    unordered_map<Vec2, unsigned int, vec2hash> sources;
-    vector<unsigned int> to_remove;
+void _merge_sources(std::vector<std::shared_ptr<Subtree>>& skeleton) {
+    std::unordered_map<Vec2, unsigned int, vec2hash> sources;
+    std::vector<unsigned int> to_remove;
 
     for (unsigned int i = 0; i < skeleton.size(); i++) {
         Subtree& p = *skeleton[i]; 
@@ -34,7 +34,7 @@ void _merge_sources(vector<shared_ptr<Subtree>>& skeleton) {
             unsigned int source_index = sources[source];
             // source exists, merge sinks
             for (const Vec2& sink : p.sinks) {
-                if (find(skeleton[source_index]->sinks.begin(), skeleton[source_index]->sinks.end(), sink) == skeleton[source_index]->sinks.end()) {
+                if (std::find(skeleton[source_index]->sinks.begin(), skeleton[source_index]->sinks.end(), sink) == skeleton[source_index]->sinks.end()) {
                     skeleton[source_index]->sinks.push_back(sink);
                 }
             }
@@ -49,15 +49,15 @@ void _merge_sources(vector<shared_ptr<Subtree>>& skeleton) {
     }
 }
 
-vector<shared_ptr<Subtree>> skeletonize(vector<Vec2>& polygon, vector<vector<Vec2>>& holes) {
-    vector<vector<Vec2>> polygons;
+std::vector<std::shared_ptr<Subtree>> polyskel::skeletonize(std::vector<Vec2>& polygon, std::vector<std::vector<Vec2>>& holes) {
+    std::vector<std::vector<Vec2>> polygons;
     polygons.push_back(polygon);
     for (const auto& hole : holes) {
         polygons.push_back(hole);
     }
 
-    auto slav = make_unique<SLAV>(polygons);
-    vector<shared_ptr<Subtree>> output;
+    auto slav = std::make_unique<SLAV>(polygons);
+    std::vector<std::shared_ptr<Subtree>> output;
     EventQueue prioqueue;
 
     for (auto& lav: slav->lavs) {
@@ -66,26 +66,22 @@ vector<shared_ptr<Subtree>> skeletonize(vector<Vec2>& polygon, vector<vector<Vec
         }
     }
 
-    cout << "Dupa" << prioqueue.data.size() << endl;
-
     while (!(prioqueue.empty() || slav->empty())) {
-        shared_ptr<Event> i = prioqueue.get();
+        std::shared_ptr<Event> i = prioqueue.get();
 
-        shared_ptr<Subtree> arc = nullptr;
-        vector<shared_ptr<Event>> events;
+        std::shared_ptr<Subtree> arc = nullptr;
+        std::vector<std::shared_ptr<Event>> events;
 
-        if (auto edge_event = dynamic_pointer_cast<EdgeEvent>(i)) {
+        if (auto edge_event = std::dynamic_pointer_cast<EdgeEvent>(i)) {
             if (!edge_event->vertex_a->valid || !edge_event->vertex_b->valid) {
-                cout << i->distance << " Discarded outdated edge event " << edge_event->toString() << endl;
                 continue;
             }
-            tie(arc, events) = slav->handle_edge_event(*edge_event);
-        } else if (auto split_event = dynamic_pointer_cast<SplitEvent>(i)) {
+            std::tie(arc, events) = slav->handle_edge_event(*edge_event);
+        } else if (auto split_event = std::dynamic_pointer_cast<SplitEvent>(i)) {
             if (!split_event->vertex->valid) {
-                cout << i->distance << " Discarded outdated split event " << split_event->toString() << endl;
                 continue;
             }
-            tie(arc, events) = slav->handle_split_event(*split_event);
+            std::tie(arc, events) = slav->handle_split_event(*split_event);
         }
 
         prioqueue.put_all(events);

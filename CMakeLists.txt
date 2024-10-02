@@ -48,7 +48,6 @@ target_link_libraries(demo polyskel)
 # Enable testing
 enable_testing()
 
-# Add a simple test (for example purposes, you should replace with actual tests)
 add_test(NAME CompareScriptTest
           COMMAND python3 test/test.py )
 #         COMMAND ${CMAKE_COMMAND} -E env python3 ${CMAKE_SOURCE_DIR}/test/compare.py)
