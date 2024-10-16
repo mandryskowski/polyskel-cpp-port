@@ -35,6 +35,22 @@ add_executable(demo demo.cpp)
 # Create the shared library
 add_library(polyskel SHARED ${LIBRARY_SOURCES})
 
+# pthread for emscripten
+if (EMSCRIPTEN)
+  set(THREADS_PREFER_PTHREAD_FLAG ON)
+  find_package(Threads REQUIRED)
+  target_link_libraries(polyskel PRIVATE Threads::Threads)
+  add_link_options("SHELL:-s USE_PTHREADS -matomics -mbulk-memory")
+  set_target_properties(polyskel PROPERTIES COMPILE_FLAGS "-s USE_PTHREADS")
+
+
+  if (Threads_FOUND)
+    message("-- OK.")
+  else ()
+    message(FATAL_ERROR "Threads not found.")
+  endif ()
+endif()
+
 get_target_property(polyskel_target_type polyskel TYPE)
 if(polyskel_target_type STREQUAL STATIC_LIBRARY)
   target_compile_definitions(polyskel PUBLIC POLYSKEL_STATIC_EXPORTS)
