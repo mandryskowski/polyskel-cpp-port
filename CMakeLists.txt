@@ -62,6 +62,9 @@ else()
     set_target_properties(polyskel PROPERTIES
       COMPILE_OPTIONS "$<$<CONFIG:Debug>:/MTd>$<$<CONFIG:Release>:/MT>"
     )
+    set_target_properties(demo PROPERTIES
+      COMPILE_OPTIONS "$<$<CONFIG:Debug>:/MTd>$<$<CONFIG:Release>:/MT>"
+    )
   endif()
 endif()
 
