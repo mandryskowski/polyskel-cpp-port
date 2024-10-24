@@ -6,7 +6,7 @@ project(PolyskelProject)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-# Add source files for the shared library
+# Add source files for the library
 set(LIBRARY_SOURCES
     lav.cpp
     lavertex.cpp
@@ -26,23 +26,25 @@ set(LIBRARY_HEADERS
     vec.h
 )
 
-file(COPY ${CMAKE_SOURCE_DIR}/test DESTINATION ${CMAKE_BINARY_DIR})
-file(COPY ${CMAKE_SOURCE_DIR}/examples DESTINATION ${CMAKE_BINARY_DIR})
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/test DESTINATION ${CMAKE_BINARY_DIR})
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/examples DESTINATION ${CMAKE_BINARY_DIR})
 
 # Add the executable
 add_executable(demo demo.cpp)
 
-# Create the shared library
-add_library(polyskel SHARED ${LIBRARY_SOURCES})
+# Create the library
+add_library(polyskel ${LIBRARY_SOURCES})
 
 # pthread for emscripten
 if (EMSCRIPTEN)
   set(THREADS_PREFER_PTHREAD_FLAG ON)
   find_package(Threads REQUIRED)
   target_link_libraries(polyskel PRIVATE Threads::Threads)
-  add_link_options("SHELL:-s USE_PTHREADS -matomics -mbulk-memory")
-  set_target_properties(polyskel PROPERTIES COMPILE_FLAGS "-s USE_PTHREADS")
-
+	add_link_options("SHELL:-s USE_PTHREADS -matomics -mbulk-memory -s SIDE_MODULE=1")
+	set_target_properties(polyskel PROPERTIES
+		COMPILE_FLAGS "-s USE_PTHREADS -s SIDE_MODULE=1"
+		POSITION_INDEPENDENT_CODE ON
+	)
 
   if (Threads_FOUND)
     message("-- OK.")
@@ -52,13 +54,18 @@ if (EMSCRIPTEN)
 endif()
 
 get_target_property(polyskel_target_type polyskel TYPE)
-if(polyskel_target_type STREQUAL STATIC_LIBRARY)
-  target_compile_definitions(polyskel PUBLIC POLYSKEL_STATIC_EXPORTS)
-else()
+if(polyskel_target_type STREQUAL SHARED_LIBRARY)
   target_compile_definitions(polyskel PRIVATE POLYSKEL_SHARED_EXPORTS)
+else()
+  target_compile_definitions(polyskel PUBLIC POLYSKEL_STATIC_EXPORTS)
+  if(WIN32)
+    set_target_properties(polyskel PROPERTIES
+      COMPILE_OPTIONS "$<$<CONFIG:Debug>:/MTd>$<$<CONFIG:Release>:/MT>"
+    )
+  endif()
 endif()
 
-# Link the shared library to the executable
+# Link the library to the executable
 target_link_libraries(demo polyskel)
 
 # Enable testing
