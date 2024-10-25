@@ -8,6 +8,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 # Add source files for the library
 set(LIBRARY_SOURCES
+    event.cpp
     lav.cpp
     lavertex.cpp
     slav.cpp
@@ -58,6 +59,9 @@ if(polyskel_target_type STREQUAL SHARED_LIBRARY)
   target_compile_definitions(polyskel PRIVATE POLYSKEL_SHARED_EXPORTS)
 else()
   target_compile_definitions(polyskel PUBLIC POLYSKEL_STATIC_EXPORTS)
+	set_target_properties(polyskel PROPERTIES
+		POSITION_INDEPENDENT_CODE ON
+	)
   if(WIN32)
     set_target_properties(polyskel PROPERTIES
       COMPILE_OPTIONS "$<$<CONFIG:Debug>:/MTd>$<$<CONFIG:Release>:/MT>"

@@ -80,44 +80,16 @@ namespace polyskel {
             };
         }
 
-        void put(std::shared_ptr<Event> item) {
-            if (item) {
-                data.emplace_back(item, insertion_counter++);
-                std::push_heap(data.begin(), data.end(), heap_func());
-            }
-        }
+        void put(std::shared_ptr<Event> item);
+        void put_all(const std::vector<std::shared_ptr<Event>>& items);
 
-        void put_all(const std::vector<std::shared_ptr<Event>>& items) {
-            for (auto& item : items) {
-                data.emplace_back(item, insertion_counter++);
-                std::push_heap(data.begin(), data.end(), heap_func());
-            }
-        }
+        std::shared_ptr<Event> get();
 
-        std::shared_ptr<Event> get() {
-            std::pop_heap(data.begin(), data.end(), heap_func());
-            auto item = data.back().event;
-            data.pop_back();
-            return item;
-        }
+        bool empty() const;
 
-        bool empty() const {
-            return data.empty();
-        }
+        std::shared_ptr<Event> peek() const;
 
-        std::shared_ptr<Event> peek() const {
-            if (!data.empty()) {
-                return data.front().event;
-            }
-            throw std::out_of_range("Queue is empty");
-        }
-
-        void show() const {
-            for (const auto& item : data) {
-                std::cout << item.event->distance << "(" << item.index << ") ";
-            }
-            std::cout << std::endl;
-        }
+        void show() const;
     };
 } // namespace polyskel
 #endif // POLYSKEL_CPP_PORT_EVENT_H
