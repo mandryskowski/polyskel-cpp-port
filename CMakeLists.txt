@@ -62,14 +62,14 @@ else()
 	set_target_properties(polyskel PROPERTIES
 		POSITION_INDEPENDENT_CODE ON
 	)
-  if(WIN32)
-    set_target_properties(polyskel PROPERTIES
-      COMPILE_OPTIONS "$<$<CONFIG:Debug>:/MTd>$<$<CONFIG:Release>:/MT>"
-    )
-    set_target_properties(demo PROPERTIES
-      COMPILE_OPTIONS "$<$<CONFIG:Debug>:/MTd>$<$<CONFIG:Release>:/MT>"
-    )
-  endif()
+#  if(WIN32)
+#    set_target_properties(polyskel PROPERTIES
+#      COMPILE_OPTIONS "$<$<CONFIG:Debug>:/MTd>$<$<CONFIG:Release>:/MT>"
+#    )
+#    set_target_properties(demo PROPERTIES
+#      COMPILE_OPTIONS "$<$<CONFIG:Debug>:/MTd>$<$<CONFIG:Release>:/MT>"
+#    )
+#  endif()
 endif()
 
 # Link the library to the executable
